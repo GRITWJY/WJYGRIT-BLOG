@@ -27,8 +27,6 @@
     </div>
 
 
-
-
   </div>
 </template>
 
@@ -56,6 +54,8 @@ export default {
       this.bannerBgText = this.homeData.banner[this.bannerBgIndex].txt
       this.bannerBgStyle = `background: url(${this.$withBase(this.homeData.banner[this.bannerBgIndex].img)}) center center / cover no-repeat`
     }, 8000)
+
+    console.log(this.$categoriesAndTags)
   },
   mounted() {
     this.generateStars()
@@ -72,7 +72,6 @@ export default {
     generateStars() {
       let banner = document.getElementsByClassName('banner')[0]
       let bannerW = banner.clientWidth
-      console.log(bannerW)
       let bannerH = banner.clientHeight
       let colorrange = [0, 60, 240];
       let fragment = document.createDocumentFragment();

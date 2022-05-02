@@ -1,0 +1,140 @@
+---
+title: vue原理剖析1-数据驱动
+date: 2022-05-01 09:51:37
+permalink: /pages/8143af9a11/
+categories:
+  - 前端
+  - 源码系列
+  - vue源码系列
+tags:
+  - vue
+  - 源码  
+author: WJYGRIT
+---
+
+
+
+# vue原理剖析1-数据驱动
+
+[这一系列的仓库地址](https://github.com/GRITWJY/wjySourceSimple/tree/master/studyVue)
+
+
+## 简单的模板渲染
+Vue的执行流程
+- 1、 获得模板：模板中有'坑'
+- 2、 利用Vue构造函数中所提供的数据来 '填坑', 得到可以在页面中显示的 '标签了'
+- 3、 将标签替换页面中原来有坑的标签
+
+Vue利用 **我们提供的数据** 和 **页面中模板** 生成了一个新的HTML标签，替换到了页面中放置模板的位置
+
+`∴ 如何实现？`
+> 第一版 
+> 1、 拿到模板 
+> 
+> 2、 拿到数据
+> 
+> 3、 将数据与模板结合，得到的事HTML元素
+> 
+> 4、 放到页面中
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>仿照数据驱动</title>
+  </head>
+  <body>
+    <div id="root">
+      <p>{{ name }}</p>
+      <p>{{ message }}</p>
+    </div>
+    <script>
+      let reg = /\{\{(.+?)\}\}/g;
+
+      // 步骤拆解
+      // 1、 拿到模板
+      // 2、 拿到数据
+      // 3、 将数据与模板结合，得到的事HTML元素
+      // 4、 放到页面中
+
+      // 1、
+      let tmpNode = document.querySelector("#root");
+      // 2、
+      let data = {
+        name: "一个新name",
+        message: "消息",
+      };
+      // 3、 放到模板中？
+      /* 问题：如何拿到 {{}}
+       一般都是使用  递归
+       在现在案例中,template是DOM元素
+       在源码中，是DOM-> 字符串模板 -> VNode -> 真正的DOM
+       */
+      function compiler(template, data) {
+        let childNodes = template.childNodes;
+        for (let i = 0; i < childNodes.length; i++) {
+          // 判断子元素是否是文本节点
+          let type = childNodes[i].nodeType; // 1 元素， 3文本节点
+          if (type === 3) {
+            // 文本节点，可以判断是有{{}}
+            let txt = childNodes[i].nodeValue; // 该属性只有文本节点才有意义
+            // 有没有{{}}，正则
+            /*
+            var txt = '1{{2}}{{33}}'
+            txt.replace(reg,(_,g)=>{console.log(_,g);return '-'})
+            {{2}} 2
+            {{33}} 33
+            第0个参数表示匹配的内容，第n个参数表示正则中的第n组
+            * */
+            txt = txt.replace(reg, function (_, g) {
+              let key = g.trim(); // 写在{{}}里的内容
+              let value = data[key];
+              // 将{{xxx}}替换
+              return value;
+            });
+
+            // 注意：txt现在和DOM元素无关，要加回去
+            childNodes[i].nodeValue = txt;
+          } else if (type === 1) {
+            // 元素： 考虑是否有子元素
+            compiler(childNodes[i], data);
+          }
+        }
+      }
+
+      // 此时是没有生成新的Node
+      // 但这样做模板就没了，之后改变数据时，就无法刷新了
+      // 拷贝模板
+      let generateNode = tmpNode.cloneNode(true); // DOM元素可以这么用
+      console.log(tmpNode);
+      compiler(generateNode, data);
+      console.log(generateNode);
+
+      //4. 放到页面中
+      root.parentNode.replaceChild(generateNode, root);
+
+      // 上面的思路有很大的问题：
+      /*
+      1. vue使用的是 虚拟DOM
+      2. 只考虑了 单属性（{{name}}），而vue中大量使用层级(xx.xx.xx)
+      3. 代码没有整合
+       */
+    </script>
+  </body>
+</html>
+
+```
+
+**问题**
+- 1. vue使用的是 虚拟DOM
+- 2. 只考虑了 单属性（{{name}}），而vue中大量使用层级(xx.xx.xx)
+- 3. 代码没有整合
+  
+> 解决2和3
+
+
+## 虚拟DOM
+- 1、 怎么将真正的DOM转换为虚拟DOM
+- 2、 怎么将虚拟DOM转换为真正的DOM
+思路与深拷贝类似
