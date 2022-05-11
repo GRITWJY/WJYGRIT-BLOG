@@ -1,5 +1,5 @@
 <template>
-  <aside class="blogger-wrapper">
+  <aside class="blogger-wrapper card-box">
     <div class="avatar">
       <img :src="blogger.avatar" alt="我的头像" />
     </div>
@@ -28,7 +28,6 @@ export default {
   padding-top 0 !important
   overflow hidden
   background-color #ffffff
-  border-radius 10px
 
 
   .avatar

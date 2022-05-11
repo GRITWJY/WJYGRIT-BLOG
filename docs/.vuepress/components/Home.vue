@@ -23,6 +23,11 @@
 
       <template #mainRight>
         <blogger-bar />
+        <CategoriesBar
+          :categoriesData="$categoriesAndTags.categories"
+          :length="10"
+        />
+        <TagsBar :tagsData="$categoriesAndTags.tags" :length="30" />
       </template>
     </main-layout>
   </div>
@@ -32,9 +37,11 @@
 import MainLayout from "./MainLayout";
 import BloggerBar from "./BloggerBar";
 import ArticleList from "./ArticleList";
+import CategoriesBar from "./CategoriesBar";
+import TagsBar from "./TagsBar";
 
 export default {
-  components: { BloggerBar, MainLayout, ArticleList },
+  components: { TagsBar, CategoriesBar, BloggerBar, MainLayout, ArticleList },
   data() {
     return {
       bannerBgStyle: "",
@@ -44,7 +51,6 @@ export default {
     };
   },
   created() {
-    // console.log(this.$page.frontmatter)
     this.bannerBgStyle = `background: url(${this.$withBase(
       this.homeData.banner[this.bannerBgIndex].img
     )}) center center / cover no-repeat`;

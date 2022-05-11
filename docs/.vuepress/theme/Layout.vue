@@ -41,6 +41,16 @@ export default {
   beforeMount() {
     // 正常
     this.isSidebarOpenOfclientWidth();
+
+    // 引入图标库
+    const social = this.$themeConfig.social;
+    if (social && social.iconfontCssFile) {
+      let linkElm = document.createElement("link");
+      linkElm.setAttribute("rel", "stylesheet");
+      linkElm.setAttribute("type", "text/css");
+      linkElm.setAttribute("href", social.iconfontCssFile);
+      document.head.appendChild(linkElm);
+    }
   },
   mounted() {
     this.showSidebar = true;
