@@ -1,52 +1,76 @@
 <template>
-  <div
-    class="theme-container"
-    :class="pageClasses"
-  >
-    <Navbar v-if="shouldShowNavbar" @toggle-sidebar="toggleSidebar"/>
+  <div class="theme-container" :class="pageClasses">
+    <Navbar v-if="shouldShowNavbar" @toggle-sidebar="toggleSidebar" />
     <div class="sidebar-mask" @click="toggleSidebar(false)"></div>
 
     <Sidebar></Sidebar>
 
-
     <Home></Home>
-
   </div>
 </template>
 
 <script>
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
-import {resolveSidebarItems} from '../util'
+import { resolveSidebarItems } from "../util";
 import Home from "../components/Home";
+import _ from "lodash";
 
-const MOBILE_DESKTOP_BREAKPOINT = 719 // refer to config.styl
-const NAVBAR_HEIGHT = 58 // 导航栏高度
+const MOBILE_DESKTOP_BREAKPOINT = 719; // refer to config.styl
+const NAVBAR_HEIGHT = 58; // 导航栏高度
 export default {
   components: {
     Navbar,
     Home,
-    Sidebar
+    Sidebar,
   },
   data() {
     return {
       isSidebarOpen: true,
       showSidebar: false,
       hideNavbar: false,
-
-    }
+    };
   },
   created() {
-    const sidebarOpen = this.$themeConfig.sidebarOpen
+    const sidebarOpen = this.$themeConfig.sidebarOpen;
     if (sidebarOpen === false) {
-      this.isSidebarOpen = sidebarOpen
+      this.isSidebarOpen = sidebarOpen;
     }
+    console.log("created", this.isSidebarOpen);
   },
   beforeMount() {
-    this.isSidebarOpenOfclientWidth()
+    // 正常
+    this.isSidebarOpenOfclientWidth();
   },
   mounted() {
-    this.showSidebar = true
+    this.showSidebar = true;
+    this.$router.afterEach(() => {
+      this.isSidebarOpenOfclientWidth();
+    });
+
+    // 向下滚动收起导航栏
+    let p = 0,
+      t = 0;
+    window.addEventListener(
+      "scroll",
+      _.throttle(() => {
+        console.log("win", this.isSidebarOpen);
+        if (!this.isSidebarOpen) {
+          // 侧边栏关闭时
+          p = this.getScrollTop();
+          if (t < p && p > NAVBAR_HEIGHT) {
+            // 向下移动
+            this.hideNavbar = true;
+          } else {
+            // 向上
+            this.hideNavbar = false;
+          }
+          setTimeout(() => {
+            t = p;
+          }, 0);
+        }
+      }, 300)
+    );
   },
   computed: {
     sidebarItems() {
@@ -55,68 +79,69 @@ export default {
         this.$page.regularPath,
         this.$site,
         this.$localePath
-      )
+      );
     },
     pageClasses() {
-      const userPageClass = this.$page.frontmatter.pageClass
+      const userPageClass = this.$page.frontmatter.pageClass;
       return [
         {
-          'no-navbar': !this.shouldShowNavbar,
-          'sidebar-open': this.isSidebarOpen,
-          'no-sidebar': !this.shouldShowSidebar,
-          'hide-navbar': this.hideNavbar, // 向下滚动隐藏导航栏
+          "no-navbar": !this.shouldShowNavbar,
+          "sidebar-open": this.isSidebarOpen,
+          "no-sidebar": !this.shouldShowSidebar,
+          "hide-navbar": this.hideNavbar, // 向下滚动隐藏导航栏
         },
-        userPageClass
-      ]
+        userPageClass,
+      ];
     },
     // 是否显示导航栏，这个是手机上要用遮罩层，所以就要取消掉
     shouldShowNavbar() {
-      const {themeConfig} = this.$site
-      const {frontmatter} = this.$page
+      const { themeConfig } = this.$site;
+      const { frontmatter } = this.$page;
 
-      if (
-        frontmatter.navbar === false
-        || themeConfig.navbar === false) {
-        return false
+      if (frontmatter.navbar === false || themeConfig.navbar === false) {
+        return false;
       }
-      return (
-        this.$title
-        || themeConfig.logo
-        || themeConfig.nav
-      )
+      return this.$title || themeConfig.logo || themeConfig.nav;
     },
     shouldShowSidebar() {
-      const {frontmatter} = this.$page
+      const { frontmatter } = this.$page;
       return (
-        !frontmatter.home
-        && frontmatter.sidebar !== false
-        && this.sidebarItems.length
-        && frontmatter.showSidebar !== false
-      )
+        !frontmatter.home &&
+        frontmatter.sidebar !== false &&
+        this.sidebarItems.length &&
+        frontmatter.showSidebar !== false
+      );
     },
-
-
   },
   methods: {
+    getScrollTop() {
+      return (
+        window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop ||
+        0
+      );
+    },
+
     isSidebarOpenOfclientWidth() {
       if (document.documentElement.clientWidth < MOBILE_DESKTOP_BREAKPOINT) {
-        this.isSidebarOpen = false
+        this.isSidebarOpen = false;
       }
     },
     toggleSidebar(to) {
-      this.isSidebarOpen = typeof to === 'boolean' ? to : !this.isSidebarOpen
-      console.log(this.isSidebarOpen)
-      this.$emit('toggle-sidebar', this.isSidebarOpen)
-    }
+      this.isSidebarOpen = typeof to === "boolean" ? to : !this.isSidebarOpen;
+      this.$emit("toggle-sidebar", this.isSidebarOpen);
+    },
   },
   watch: {
     isSidebarOpen() {
-      if (this.isSidebarOpen) {  // 侧边栏打开时，恢复导航栏显示
-        this.hideNavbar = false
+      if (this.isSidebarOpen) {
+        // 侧边栏打开时，恢复导航栏显示
+        this.hideNavbar = false;
       }
     },
   },
-}
+};
 </script>
 
 <style lang="stylus">

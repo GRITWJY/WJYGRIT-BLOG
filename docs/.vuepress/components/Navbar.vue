@@ -1,9 +1,7 @@
 <template>
   <header class="navbar blur">
-    <SidebarButton @toggle-sidebar="$emit('toggle-sidebar')"/>
-    <router-link
-      :to="$localePath"
-      class="home-link">
+    <SidebarButton @toggle-sidebar="$emit('toggle-sidebar')" />
+    <router-link :to="$localePath" class="home-link">
       <img
         class="logo"
         v-if="$site.themeConfig.logo"
@@ -15,56 +13,64 @@
         class="site-name"
         v-if="$siteTitle"
         :class="{ 'can-hide': $site.themeConfig.logo }"
-      >{{ $siteTitle }}</span>
+        >{{ $siteTitle }}</span
+      >
     </router-link>
 
     <div
       class="links"
-      :style="linksWrapMaxWidth ? {
-        'max-width': linksWrapMaxWidth + 'px'
-      } : {}"
+      :style="
+        linksWrapMaxWidth
+          ? {
+              'max-width': linksWrapMaxWidth + 'px',
+            }
+          : {}
+      "
     >
-      <SearchBox/>
+      <SearchBox />
       <!-- 手机屏幕不显示 -->
-      <NavLinks class="can-hide"/>
+      <NavLinks class="can-hide" />
     </div>
   </header>
 </template>
 
 <script>
-import SidebarButton from './SidebarButton'
-import SearchBox from '@SearchBox'
+import SidebarButton from "./SidebarButton";
+import SearchBox from "@SearchBox";
 import NavLinks from "./NavLinks";
 
 export default {
-  components: {SidebarButton, SearchBox, NavLinks},
+  components: { SidebarButton, SearchBox, NavLinks },
   data() {
     return {
-      linksWrapMaxWidth: null
-    }
+      linksWrapMaxWidth: null,
+    };
   },
   mounted() {
-    const MOBILE_DESKTOP_BREAKPOINT = 719 // refer to config.styl
-    const NAVBAR_VERTICAL_PADDING = parseInt(css(this.$el, 'paddingLeft')) + parseInt(css(this.$el, 'paddingRight'))
+    const MOBILE_DESKTOP_BREAKPOINT = 719; // refer to config.styl
+    const NAVBAR_VERTICAL_PADDING =
+      parseInt(css(this.$el, "paddingLeft")) +
+      parseInt(css(this.$el, "paddingRight"));
     const handleLinksWrapWidth = () => {
       if (document.documentElement.clientWidth < MOBILE_DESKTOP_BREAKPOINT) {
-        this.linksWrapMaxWidth = null
+        this.linksWrapMaxWidth = null;
       } else {
-        this.linksWrapMaxWidth = this.$el.offsetWidth - NAVBAR_VERTICAL_PADDING
-          - (this.$refs.siteName && this.$refs.siteName.offsetWidth || 0)
+        this.linksWrapMaxWidth =
+          this.$el.offsetWidth -
+          NAVBAR_VERTICAL_PADDING -
+          ((this.$refs.siteName && this.$refs.siteName.offsetWidth) || 0);
       }
-    }
+    };
 
-    handleLinksWrapWidth()
-    window.addEventListener('resize', handleLinksWrapWidth, false)
+    handleLinksWrapWidth();
+    window.addEventListener("resize", handleLinksWrapWidth, false);
   },
-}
+};
 
 function css(el, property) {
-  const win = el.ownerDocument.defaultView
-  return win.getComputedStyle(el, null)[property]
+  const win = el.ownerDocument.defaultView;
+  return win.getComputedStyle(el, null)[property];
 }
-
 </script>
 
 <style lang="stylus">
@@ -74,7 +80,7 @@ $navbar-horizontal-padding = 1.5rem
 .navbar
   padding $navbar-vertical-padding $navbar-horizontal-padding
   line-height $navbarHeight - 1.4rem
-  transition transition 0.3s
+  transition transform 0.3s
 
   a, span, img
     display inline-block

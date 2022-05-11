@@ -38,6 +38,7 @@ module.exports = {
         ],
       },
     ],
+    sidebarOpen: false,
     sidebar: require("./sidebar.js"), // 侧栏
     lastUpdated: "Last Updated",
     searchMaxSuggestoins: 10,
@@ -54,7 +55,7 @@ module.exports = {
     blogger: {
       avatar: "https://wjygrit.oss-cn-beijing.aliyuncs.com/wjy.jpeg",
       name: "WJYGRIT",
-      slogan: "专研前端技术",
+      slogan: "专研前端技术的小白",
     },
   },
 };
