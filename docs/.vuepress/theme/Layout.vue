@@ -7,6 +7,7 @@
 
     <Home v-if="$page.frontmatter.home"></Home>
     <CategoriesPage v-else-if="$page.frontmatter.categoriesPage" />
+    <TagsPage v-else-if="$page.frontmatter.tagsPage" />
   </div>
 </template>
 
@@ -17,11 +18,13 @@ import { resolveSidebarItems } from "../util";
 import Home from "../components/Home";
 import CategoriesPage from "../components/CategoriesPage";
 import _ from "lodash";
+import TagsPage from "../components/TagsPage";
 
 const MOBILE_DESKTOP_BREAKPOINT = 719; // refer to config.styl
 const NAVBAR_HEIGHT = 58; // 导航栏高度
 export default {
   components: {
+    TagsPage,
     Navbar,
     Home,
     Sidebar,
