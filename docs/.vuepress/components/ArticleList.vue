@@ -5,16 +5,13 @@
 -->
 
 <template>
-  <div style="height: 400px">
+  <div class="articles-wrapper">
     <!--  一级目录展示框  -->
     <div class="flex flex-wrap">
       <div
         v-for="(val, key, index) in categories"
-        :class="[
-          'category1-btn',
-          curLevel1 === categories[key] ? 'selected' : '',
-        ]"
-        @click="curLevel1 = categories[key]"
+        :class="['category1-btn', level1 === key ? 'selected' : '']"
+        @click="changeLevel1(key)"
       >
         {{ key }}
       </div>
@@ -27,12 +24,9 @@
           :style="{ left: indicatorLeft + 'px' }"
         ></div>
         <div
-          v-for="(val, key, index) in curLevel1"
-          :class="[
-            'category2-item',
-            curLevel2 === curLevel1[key] ? 'selected' : '',
-          ]"
-          @click="changeLevel2($event, curLevel1[key])"
+          v-for="(val, key, index) in categories[level1]"
+          :class="['category2-item', level2 === key ? 'selected' : '']"
+          @click="changeLevel2(key)"
         >
           {{ key }}
         </div>
@@ -83,35 +77,50 @@
 
 <script>
 export default {
+  props: {
+    category: {
+      type: String,
+      default: "",
+    },
+  },
   data() {
     return {
-      curLevel1: null,
       categories: null,
-      curLevel2: "",
-      indicatorLeft: "",
-      childs: [],
+      level1: "", // 一级目录
+      level2: "", // 二级目录
+      indicatorLeft: "", // 指示器位置
+      childs: [], // 子节点
     };
   },
   created() {
+    // 初始化
     this.categories = this.$groupPosts.categories;
-    this.curLevel1 = this.categories[Object.keys(this.categories)[0]];
-    this.$nextTick(() => {
-      this.getIndicatorLeft();
-    });
+    this.level1 = Object.keys(this.categories)[0];
+    let curLevel1 = this.categories[this.level1];
+    this.level2 = Object.keys(curLevel1)[0];
   },
 
   watch: {
-    curLevel1() {
-      this.curLevel2 = this.curLevel1[Object.keys(this.curLevel1)[0]];
-      this.$nextTick(() => {
-        this.getIndicatorLeft();
-      });
+    category() {
+      let datas = this.$categoriesAndTags.categories;
+      for (let i = 0; i < datas.length; i++) {
+        let data = datas[i];
+        if (data.key === this.category) {
+          let path = data.path.split("/");
+          let level1 = path[0];
+          let level2 = path.length > 2 ? path[1] : this.category;
+          this.changeLevel1(level1, level2);
+        }
+      }
     },
-    curLevel2() {
-      if (this.curLevel2.children === undefined) {
+
+    // 二级目录改变后，通过文字去改变指示器内容
+    level2() {
+      let curLevel2 = this.categories[this.level1][this.level2];
+      if (curLevel2.children === undefined) {
         this.childs = {};
-        Object.keys(this.curLevel2).forEach((key) => {
-          this.childs[key] = this.curLevel2[key].children.map((item) => {
+        Object.keys(curLevel2).forEach((key) => {
+          this.childs[key] = curLevel2[key].children.map((item) => {
             return {
               title: item.frontmatter.title,
               tags: item.frontmatter.tags.join("、"),
@@ -123,7 +132,7 @@ export default {
           });
         });
       } else {
-        this.childs = this.curLevel2.children.map((item) => {
+        this.childs = curLevel2.children.map((item) => {
           return {
             title: item.frontmatter.title,
             tags: item.frontmatter.tags.join("、"),
@@ -134,18 +143,31 @@ export default {
           };
         });
       }
+
+      this.$nextTick(() => {
+        this.getIndicator();
+      });
     },
   },
 
-  mounted() {},
   methods: {
-    getIndicatorLeft(e = document.getElementsByClassName("category2-item")[0]) {
+    getIndicator() {
+      let e =
+        document.getElementsByClassName("category2-item")[
+          Object.keys(this.categories[this.level1]).indexOf(this.level2)
+        ];
       this.indicatorLeft = e.offsetLeft + e.offsetWidth / 2 - 8;
     },
 
-    changeLevel2(e, data) {
-      this.curLevel2 = data;
-      this.getIndicatorLeft(e.path[0]);
+    // 改变二级目录，赋值二级目录
+    changeLevel2(level2) {
+      this.level2 = level2;
+    },
+
+    // 改变一级目录: 赋值一级目录，二级若没传，则直接给默认的
+    changeLevel1(level1, level2) {
+      this.level1 = level1;
+      this.level2 = level2 || Object.keys(this.categories[this.level1])[0];
     },
   },
 };

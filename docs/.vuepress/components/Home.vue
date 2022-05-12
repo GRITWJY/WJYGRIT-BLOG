@@ -57,20 +57,22 @@ export default {
     this.bannerBgText = this.homeData.banner[this.bannerBgIndex].txt;
     let num = 0;
     this.timer = setInterval(() => {
-      num++;
-      this.bannerBgIndex++;
-      this.bannerBgIndex =
-        this.bannerBgIndex == this.homeData.banner.length
-          ? 0
-          : this.bannerBgIndex;
-      this.bannerBgText = this.homeData.banner[this.bannerBgIndex].txt;
-      this.bannerBgStyle = `background: url(${this.$withBase(
-        this.homeData.banner[this.bannerBgIndex].img
-      )}) center center / cover no-repeat`;
+      if (this.homeData.home) {
+        num++;
+        this.bannerBgIndex++;
+        this.bannerBgIndex =
+          this.bannerBgIndex == this.homeData.banner.length
+            ? 0
+            : this.bannerBgIndex;
+        this.bannerBgText = this.homeData.banner[this.bannerBgIndex].txt;
+        this.bannerBgStyle = `background: url(${this.$withBase(
+          this.homeData.banner[this.bannerBgIndex].img
+        )}) center center / cover no-repeat`;
+      }
     }, 8000);
   },
   mounted() {
-    // this.generateStars();
+    this.generateStars();
   },
   destoryed() {
     clearInterval(this.timer);
@@ -80,44 +82,49 @@ export default {
       return Math.floor(Math.random() * (max - min + 1)) + min;
     },
 
-    // generateStars() {
-    //   let banner = document.getElementsByClassName("banner")[0];
-    //   let bannerW = banner.clientWidth;
-    //   let bannerH = banner.clientHeight;
-    //   let colorrange = [0, 60, 240];
-    //   let fragment = document.createDocumentFragment();
-    //   window.requestAnimationFrame(() => {
-    //     for (let i = 0; i < 100; i++) {
-    //       let div = document.createElement("div");
-    //       let x = parseInt(Math.random() * bannerW);
-    //       let y = parseInt(Math.random() * bannerH);
-    //       let hue = colorrange[this.getRandom(0, colorrange.length - 1)];
-    //       let radius = Math.random() * 3;
-    //       let sat = this.getRandom(50, 100);
-    //       div.className = "stars";
-    //       div.style.left = x + "px";
-    //       div.style.top = y + "px";
-    //       div.style.zIndex = "0";
-    //       div.style.width = radius + "px";
-    //       div.style.height = radius + "px";
-    //       div.style.borderRadius = radius + "px";
-    //       div.style.animationDelay = radius + "s";
-    //       div.style.backgroundColor = "hsl(" + hue + ", " + sat + "%, 88%)";
-    //       div.style.boxShadow =
-    //         "0px 0px 10px 3px " + "hsl(" + hue + ", " + sat + "%, 88%)";
-    //       var scale = Math.random() * 1.5;
-    //       div.style.transform = "scale(" + scale + ", " + scale + ")";
-    //       fragment.appendChild(div);
-    //     }
-    //     banner.appendChild(fragment);
-    //   });
-    // },
+    generateStars() {
+      let banner = document.getElementsByClassName("banner")[0];
+      let bannerW = banner.clientWidth;
+      let bannerH = banner.clientHeight;
+      let colorrange = [0, 60, 240];
+      let fragment = document.createDocumentFragment();
+      window.requestAnimationFrame(() => {
+        for (let i = 0; i < 100; i++) {
+          let div = document.createElement("div");
+          let x = parseInt(Math.random() * bannerW);
+          let y = parseInt(Math.random() * bannerH);
+          let hue = colorrange[this.getRandom(0, colorrange.length - 1)];
+          let radius = Math.random() * 3;
+          let sat = this.getRandom(50, 100);
+          div.className = "stars";
+          div.style.left = (x / bannerW) * 100 + "%";
+          div.style.top = (y / bannerH) * 100 + "%";
+          div.style.zIndex = "0";
+          div.style.width = radius + "px";
+          div.style.height = radius + "px";
+          div.style.borderRadius = radius + "px";
+          div.style.animationDelay = radius + "s";
+          div.style.backgroundColor = "hsl(" + hue + ", " + sat + "%, 88%)";
+          div.style.boxShadow =
+            "0px 0px 10px 3px " + "hsl(" + hue + ", " + sat + "%, 88%)";
+          var scale = Math.random() * 1.5;
+          div.style.transform = "scale(" + scale + ", " + scale + ")";
+          fragment.appendChild(div);
+        }
+        banner.appendChild(fragment);
+      });
+    },
   },
   computed: {
     homeData() {
       return {
         ...this.$page.frontmatter,
       };
+    },
+  },
+  watch: {
+    $page() {
+      console.log(this.$page.frontmatter);
     },
   },
 };

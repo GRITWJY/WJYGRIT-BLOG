@@ -27,7 +27,7 @@
 
       <router-link
         to="/categories/"
-        v-if="(length !== 'all' && length < categoriesData, length)"
+        v-if="length !== 'all' && length < categoriesData.length"
         class="mre"
       >
         更多...

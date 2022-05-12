@@ -5,7 +5,8 @@
 
     <Sidebar></Sidebar>
 
-    <Home></Home>
+    <Home v-if="$page.frontmatter.home"></Home>
+    <CategoriesPage v-else-if="$page.frontmatter.categoriesPage" />
   </div>
 </template>
 
@@ -14,6 +15,7 @@ import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import { resolveSidebarItems } from "../util";
 import Home from "../components/Home";
+import CategoriesPage from "../components/CategoriesPage";
 import _ from "lodash";
 
 const MOBILE_DESKTOP_BREAKPOINT = 719; // refer to config.styl
@@ -23,6 +25,7 @@ export default {
     Navbar,
     Home,
     Sidebar,
+    CategoriesPage,
   },
   data() {
     return {
@@ -36,7 +39,6 @@ export default {
     if (sidebarOpen === false) {
       this.isSidebarOpen = sidebarOpen;
     }
-    console.log("created", this.isSidebarOpen);
   },
   beforeMount() {
     // 正常
@@ -64,7 +66,6 @@ export default {
     window.addEventListener(
       "scroll",
       _.throttle(() => {
-        console.log("win", this.isSidebarOpen);
         if (!this.isSidebarOpen) {
           // 侧边栏关闭时
           p = this.getScrollTop();
