@@ -41,4 +41,8 @@
     .main-right
       .blogger-wrapper
         display none
+      .tags-wrapper
+        display none
+      .categories-wrapper
+        display none
 </style>

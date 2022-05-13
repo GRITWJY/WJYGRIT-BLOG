@@ -37,6 +37,19 @@ module.exports = {
           },
         ],
       },
+      {
+        text: "计算机",
+        link: "/computed/",
+        items: [{ text: "计算机网络", link: "/pages/aFADFAFA61298/" }],
+      },
+      {
+        text: "索引",
+        link: "/archives/",
+        items: [
+          { text: "分类", link: "/categories/" },
+          { text: "标签", link: "/tags/" },
+        ],
+      },
     ],
     sidebarOpen: false,
     sidebar: require("./sidebar.js"), // 侧栏
