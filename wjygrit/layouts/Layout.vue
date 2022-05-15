@@ -38,6 +38,8 @@ export default {
     };
   },
   created() {
+    console.log(this.sidebarItems);
+
     const sidebarOpen = this.$themeConfig.sidebarOpen;
     if (sidebarOpen === false) {
       this.isSidebarOpen = sidebarOpen;

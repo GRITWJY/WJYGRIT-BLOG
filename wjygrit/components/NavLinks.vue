@@ -1,43 +1,31 @@
 <template>
-  <nav
-    class="nav-links"
-    v-if="userLinks.length"
-  >
+  <nav class="nav-links" v-if="userLinks.length">
     <!-- user links 导航栏 -->
-    <div
-      class="nav-item"
-      v-for="item in userLinks"
-      :key="item.link"
-    >
-      <DropdownLink
-        v-if="item.type === 'links'"
-        :item="item"
-      />
-      <NavLink
-        v-else
-        :item="item"
-      />
+    <div class="nav-item" v-for="item in userLinks" :key="item.link">
+      <DropdownLink v-if="item.type === 'links'" :item="item" />
+      <NavLink v-else :item="item" />
     </div>
   </nav>
 </template>
 
 <script>
-import {resolveNavLinkItem} from "../util";
+import { resolveNavLinkItem } from "../util";
 import NavLink from "./NavLink";
 import DropdownLink from "./DropdownLink";
 
 export default {
   components: {
-    NavLink,DropdownLink
+    NavLink,
+    DropdownLink,
   },
   data() {
-    return {}
+    return {};
   },
 
   computed: {
     // 获取到侧边栏
     userNav() {
-      return this.$themeLocaleConfig.nav || this.$site.themeConfig.nav || []
+      return this.$themeLocaleConfig.nav || this.$site.themeConfig.nav || [];
     },
 
     // 获取到所有侧边栏，咱这就一个
@@ -48,18 +36,18 @@ export default {
         text: "部署"
         type: "link"
       * */
-      return (this.userNav || []).map(link => {
+      return (this.userNav || []).map((link) => {
         return Object.assign(resolveNavLinkItem(link), {
-          items: (link.items || []).map(resolveNavLinkItem)
-        })
-      })
-    }
+          items: (link.items || []).map(resolveNavLinkItem),
+        });
+      });
+    },
   },
   created() {
-    console.log(this.userLinks)
+    console.log(this.userLinks);
   },
-  methods: {}
-}
+  methods: {},
+};
 </script>
 
 <style lang="stylus">
@@ -115,5 +103,4 @@ export default {
   .nav-links
     .nav-item
       margin-left 0
-
 </style>

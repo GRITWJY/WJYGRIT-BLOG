@@ -43,6 +43,8 @@
 </template>
 
 <script>
+import { dateFormat } from "../util";
+
 export default {
   name: "TagsArticleList",
   props: {
@@ -76,9 +78,7 @@ export default {
         return {
           title: item.frontmatter.title,
           tags: item.frontmatter.tags.join("、"),
-          date: this.$moment(item.frontmatter.date).format(
-            "YYYY-MM-DD HH:mm:ss"
-          ),
+          date: dateFormat(new Date(item.frontmatter.date)),
           views: "999",
         };
       });

@@ -96,7 +96,7 @@ module.exports = {
     {
       title: "源码",
       children: [
-        "source/vue/vue-1-dataDrive.md",
+        "source/vue/01.vue数据响应式.md",
         "source/vue/vue-2-render.md",
         "source/vue/vue-3-data-reactive.md",
         "source/vue/vue-3-data-reactive-2.md",

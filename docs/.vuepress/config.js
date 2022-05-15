@@ -1,4 +1,6 @@
+const path = require("path");
 module.exports = {
+  theme: path.resolve(__dirname, "../../wjygrit"),
   title: "WJYGRIT的笔记",
   description:
     "每当你被漫天乌云压的喘不过气时，往往是一切问题解决的时候。而当你感觉晴空万里时，其实并没有你想得那样好",
@@ -51,8 +53,16 @@ module.exports = {
         ],
       },
     ],
+    // 扩展自动生成frontmatter。（当md文件的frontmatter不存在相应的字段时将自动添加。不会覆盖已有的数据。）
+    extendFrontmatter: {
+      author: {
+        name: "wjygrit",
+        link: "https://github.com/gritwjy",
+      },
+    },
     sidebarOpen: false,
-    sidebar: require("./sidebar.js"), // 侧栏
+    // sidebar: require("./sidebar.js"), // 侧栏
+    sidebar: "structuring",
     lastUpdated: "Last Updated",
     searchMaxSuggestoins: 10,
     sidebarDepth: 2,

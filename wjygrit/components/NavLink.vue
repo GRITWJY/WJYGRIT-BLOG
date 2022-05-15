@@ -5,7 +5,7 @@
     @focusout.native="focusoutAction"
     v-if="!isExternal(link)"
     :exact="exact"
-  >{{ item.text }}
+    >{{ item.text }}
   </router-link>
 
   <!--OutboundLink 用来表明当前是一个外部链接。在 VuePress 中这个组件会紧跟在每一个外部链接后面。-->
@@ -18,41 +18,38 @@
     :rel="isMailto(link) || isTel(link) ? null : 'noopener noreferrer'"
   >
     {{ item.text }}
-    <OutboundLink/>
+    <OutboundLink />
   </a>
-
-
 </template>
 
 <script>
-import {ensureExt, isExternal, isMailto, isTel} from "../util";
+import { ensureExt, isExternal, isMailto, isTel } from "../util";
 
 export default {
   props: {
     item: {
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     link() {
-      return ensureExt(this.item.link)
+      return ensureExt(this.item.link);
     },
     exact() {
-      return this.link === '/'
-    }
+      return this.link === "/";
+    },
   },
   data() {
-    return {}
+    return {};
   },
-  created() {
-  },
+  created() {},
   methods: {
     isExternal,
     isMailto,
     isTel,
     focusoutAction() {
-      this.$emit('focusout')
-    }
-  }
-}
+      this.$emit("focusout");
+    },
+  },
+};
 </script>
