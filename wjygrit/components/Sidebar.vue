@@ -2,7 +2,7 @@
   <aside class="sidebar">
     <!-- 侧边栏博主介绍 -->
     <div class="blogger" v-if="blogger">
-      <img :src="blogger.avatar"/>
+      <img :src="blogger.avatar" />
       <div class="blogger-info">
         <h3>{{ blogger.name }}</h3>
         <span>{{ blogger.slogan }}</span>
@@ -10,29 +10,31 @@
     </div>
 
     <!-- 移动端Nav -->
-    <NavLinks/>
+    <NavLinks />
 
+    <SidebarLinks :depth="0" :items="items" />
   </aside>
 </template>
 
 <script>
 import NavLinks from "./NavLinks";
+import SidebarLinks from "./SidebarLinks";
 
 export default {
-  name: 'Sidebar',
-  components: {NavLinks},
+  name: "Sidebar",
+  components: { SidebarLinks, NavLinks },
   data() {
-    return {}
+    return {};
   },
-  created() {
-  },
+  props: ["items"],
+  created() {},
   computed: {
     blogger() {
-      return this.$themeConfig.blogger
-    }
+      return this.$themeConfig.blogger;
+    },
   },
-  methods: {}
-}
+  methods: {},
+};
 </script>
 
 <style lang="stylus">

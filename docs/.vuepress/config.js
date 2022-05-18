@@ -81,7 +81,7 @@ module.exports = {
       slogan: "专研前端技术的小白",
     },
     social: {
-      iconfontCssFile: "//at.alicdn.com/t/font_3393912_ni94m1ifkxm.css",
+      iconfontCssFile: "//at.alicdn.com/t/font_3393912_vd43efx1yzo.css",
     },
   },
 };

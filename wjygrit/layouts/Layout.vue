@@ -3,11 +3,16 @@
     <Navbar v-if="shouldShowNavbar" @toggle-sidebar="toggleSidebar" />
     <div class="sidebar-mask" @click="toggleSidebar(false)"></div>
 
-    <Sidebar></Sidebar>
+    <Sidebar
+      :items="sidebarItems"
+      @toggle-sidebar="toggleSidebar"
+      v-show="showSidebar"
+    ></Sidebar>
 
     <Home v-if="$page.frontmatter.home"></Home>
     <CategoriesPage v-else-if="$page.frontmatter.categoriesPage" />
     <TagsPage v-else-if="$page.frontmatter.tagsPage" />
+    <Page v-else :sidebar-items="sidebarItems"></Page>
   </div>
 </template>
 
@@ -19,11 +24,13 @@ import Home from "../components/Home";
 import CategoriesPage from "../components/CategoriesPage";
 import _ from "lodash";
 import TagsPage from "../components/TagsPage";
+import Page from "../components/Page";
 
 const MOBILE_DESKTOP_BREAKPOINT = 719; // refer to config.styl
 const NAVBAR_HEIGHT = 58; // 导航栏高度
 export default {
   components: {
+    Page,
     TagsPage,
     Navbar,
     Home,
@@ -38,8 +45,6 @@ export default {
     };
   },
   created() {
-    console.log(this.sidebarItems);
-
     const sidebarOpen = this.$themeConfig.sidebarOpen;
     if (sidebarOpen === false) {
       this.isSidebarOpen = sidebarOpen;

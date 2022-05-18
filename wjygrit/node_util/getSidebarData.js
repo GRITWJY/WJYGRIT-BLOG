@@ -113,7 +113,8 @@ function mapTocToSidebar(root, collapsable, prefix = "") {
       sidebar[order] = {
         title,
         collapsable, // 是否可折叠，默认为true
-        children: mapTocToSidebar(file, collapsable, prefix + filename + "/"),
+        children: mapTocToSidebar(file, collapsable, prefix + filename + "/")
+          .sidebar,
       };
     } else {
       // 是文件

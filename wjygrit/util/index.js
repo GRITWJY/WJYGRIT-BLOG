@@ -7,6 +7,7 @@ export function normalize(path) {
   return decodeURI(path).replace(hashRE, "").replace(extRE, "");
 }
 
+// 看path是否有hash值，并获取hash的内容
 export function getHash(path) {
   const match = path && path.match(hashRE);
   if (match) {
@@ -42,14 +43,23 @@ export function ensureExt(path) {
 }
 
 export function isActive(route, path) {
+  /*
+  route:
+  fullPath: "/pages/a61298/#_2%E3%80%81use-strict%E6%98%AF%E4%BB%80%E4%B9%88%E6%84%8F%E6%80%9D-%E4%BD%BF%E7%94%A8%E5%AE%83%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88"
+   hash: "#_2%E3%80%81use-strict%E6%98%AF%E4%BB%80%E4%B9%88%E6%84%8F%E6%80%9D-%E4%BD%BF%E7%94%A8%E5%AE%83%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88"
+
+   path:
+   /pages/a61298
+  * */
+
   const routeHash = route.hash;
-  const linkHash = getHash(path);
+  const linkHash = getHash(path); // undefined
   if (linkHash && routeHash !== linkHash) {
     return false;
   }
-  const routePath = normalize(route.path);
+  const routePath = normalize(route.path); // 从当前路径中除去hash后的内容
   const pagePath = normalize(path);
-  return routePath === pagePath;
+  return routePath === pagePath; // 判断是否相等
 }
 
 export function resolvePage(pages, rawPath, base) {
@@ -125,7 +135,6 @@ function resolvePath(relative, base, append) {
 export function resolveSidebarItems(page, regularPath, site, localePath) {
   const { pages, themeConfig } = site;
 
-  debugger;
   const localeConfig =
     localePath && themeConfig.locales
       ? themeConfig.locales[localePath] || themeConfig

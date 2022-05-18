@@ -43,9 +43,7 @@ export default {
       });
     },
   },
-  created() {
-    console.log(this.userLinks);
-  },
+  created() {},
   methods: {},
 };
 </script>
