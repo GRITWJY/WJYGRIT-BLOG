@@ -194,8 +194,8 @@ export default {
     color #e63affeb
 
   &.selected
-    background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%)
-    color #e63affeb
+    background-image: $themeBgColor
+    color #ffffff
 
 .category2
   padding 0 20px
@@ -217,14 +217,14 @@ export default {
     margin-right 30px
 
     &.selected, &:hover
-      color #e63affeb
+      color $accentColor
 
   &-indicator
     width 16px
     height 4px
     bottom 12px
     position absolute
-    background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%)
+    background-image: $themeBgColor
     border-radius: 2px;
     transition-duration: 150ms;
     transition all 1s
