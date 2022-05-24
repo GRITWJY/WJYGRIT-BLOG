@@ -35,9 +35,9 @@
 </template>
 
 <script>
-import SidebarButton from "./SidebarButton";
+import SidebarButton from "@theme/components/SidebarButton";
 import SearchBox from "@SearchBox";
-import NavLinks from "./NavLinks";
+import NavLinks from "@theme/components/NavLinks";
 
 export default {
   components: { SidebarButton, SearchBox, NavLinks },

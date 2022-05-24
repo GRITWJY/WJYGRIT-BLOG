@@ -10,8 +10,8 @@
 
 <script>
 import { resolveNavLinkItem } from "../util";
-import NavLink from "./NavLink";
-import DropdownLink from "./DropdownLink";
+import NavLink from "@theme/components/NavLink";
+import DropdownLink from "@theme/components/DropdownLink";
 
 export default {
   components: {

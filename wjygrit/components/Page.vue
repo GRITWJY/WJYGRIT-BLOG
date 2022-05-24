@@ -26,18 +26,28 @@
           <Content class="theme-vdoing-content" />
         </div>
 
+        <PageEdit />
+
         <PageNav v-bind="{ sidebarItems }" />
       </div>
+
+      <UpdateArticle
+        :length="3"
+        :moreArticle="updateBarConfig && updateBarConfig.moreArticle"
+        v-if="isShowUpdateBar"
+      ></UpdateArticle>
     </main>
   </div>
 </template>
 
 <script>
-import ArticleInfo from "./ArticleInfo.vue";
+import ArticleInfo from "@theme/components/ArticleInfo.vue";
 import TitleBadgeMixin from "../mixins/titleBadge";
-import RightMenu from "./RightMenu";
+import RightMenu from "@theme/components/RightMenu";
 import PageNav from "@theme/components/PageNav.vue";
-import Catalogue from "./Catalogue.vue";
+import Catalogue from "@theme/components/Catalogue.vue";
+import PageEdit from "@theme/components/PageEdit";
+import UpdateArticle from "@theme/components/UpdateArticle";
 
 export default {
   mixins: [TitleBadgeMixin],
@@ -48,10 +58,12 @@ export default {
   },
   props: ["sidebarItems"],
   components: {
+    UpdateArticle,
     ArticleInfo,
     RightMenu,
     PageNav,
     Catalogue,
+    PageEdit,
   },
   created() {
     this.updateBarConfig = this.$themeConfig.updateBar;

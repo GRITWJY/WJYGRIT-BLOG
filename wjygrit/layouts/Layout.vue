@@ -17,36 +17,51 @@
     <Home v-if="$page.frontmatter.home"></Home>
     <CategoriesPage v-else-if="$page.frontmatter.categoriesPage" />
     <TagsPage v-else-if="$page.frontmatter.tagsPage" />
+    <!-- 归档页 -->
+    <ArchivesPage v-else-if="$page.frontmatter.archivesPage" />
+
     <Page v-else :sidebar-items="sidebarItems"></Page>
+
+    <Footer />
+
+    <Buttons ref="buttons" @toggle-theme-mode="toggleThemeMode" />
   </div>
 </template>
 
 <script>
-import Navbar from "../components/Navbar";
-import Sidebar from "../components/Sidebar";
+import Navbar from "@theme/components/Navbar";
+import Buttons from "@theme/components/Buttons";
+import Sidebar from "@theme/components/Sidebar";
 import { resolveSidebarItems } from "../util";
-import Home from "../components/Home";
-import CategoriesPage from "../components/CategoriesPage";
+import Home from "@theme/components/Home";
+import CategoriesPage from "@theme/components/CategoriesPage";
 import _ from "lodash";
-import TagsPage from "../components/TagsPage";
-import Page from "../components/Page";
+import TagsPage from "@theme/components/TagsPage";
+import Page from "@theme/components/Page";
+import Footer from "@theme/components/Footer";
+import ArchivesPage from "@theme/components/ArchivesPage";
+import storage from "good-storage";
 
 const MOBILE_DESKTOP_BREAKPOINT = 719; // refer to config.styl
 const NAVBAR_HEIGHT = 58; // 导航栏高度
 export default {
   components: {
+    Footer,
     Page,
     TagsPage,
     Navbar,
     Home,
     Sidebar,
     CategoriesPage,
+    ArchivesPage,
+    Buttons,
   },
   data() {
     return {
       isSidebarOpen: true,
       showSidebar: false,
       hideNavbar: false,
+      themeMode: "light",
     };
   },
   created() {
@@ -58,6 +73,14 @@ export default {
   beforeMount() {
     // 正常
     this.isSidebarOpenOfclientWidth();
+    const mode = storage.get("mode"); // 不放在created是因为vuepress不能在created访问浏览器api，如window
+    if (!mode || mode === "auto") {
+      // 当未切换过模式，或模式处于'跟随系统'时
+      this._autoMode();
+    } else {
+      this.themeMode = mode;
+    }
+    this.setBodyClass();
 
     // 引入图标库
     const social = this.$themeConfig.social;
@@ -164,6 +187,15 @@ export default {
     },
   },
   methods: {
+    toggleThemeMode(key) {
+      if (key === "auto") {
+        this._autoMode();
+      } else {
+        this.themeMode = key;
+      }
+      storage.set("mode", key);
+    },
+
     getScrollTop() {
       return (
         window.pageYOffset ||
@@ -199,6 +231,18 @@ export default {
         } else {
           this.toggleSidebar(false);
         }
+      }
+    },
+    setBodyClass() {
+      document.body.className = "theme-mode-" + this.themeMode;
+    },
+
+    _autoMode() {
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        // 系统处于深色模式
+        this.themeMode = "dark";
+      } else {
+        this.themeMode = "light";
       }
     },
   },

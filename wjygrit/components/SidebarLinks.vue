@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import SidebarGroup from "./SidebarGroup";
-import SidebarLink from "./SidebarLink";
+import SidebarGroup from "@theme/components/SidebarGroup";
+import SidebarLink from "@theme/components/SidebarLink";
 import { isActive } from "../util";
 
 export default {

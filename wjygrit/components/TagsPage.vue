@@ -19,9 +19,9 @@
 </template>
 
 <script>
-import MainLayout from "./MainLayout";
-import TagsBar from "./TagsBar";
-import TagsArticleList from "./TagsArticleList";
+import MainLayout from "@theme/components/MainLayout";
+import TagsBar from "@theme/components/TagsBar";
+import TagsArticleList from "@theme/components/TagsArticleList";
 export default {
   components: { TagsArticleList, TagsBar, MainLayout },
   data() {

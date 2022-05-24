@@ -34,11 +34,11 @@
 </template>
 
 <script>
-import MainLayout from "./MainLayout";
-import BloggerBar from "./BloggerBar";
-import ArticleList from "./ArticleList";
-import CategoriesBar from "./CategoriesBar";
-import TagsBar from "./TagsBar";
+import MainLayout from "@theme/components/MainLayout";
+import BloggerBar from "@theme/components/BloggerBar";
+import ArticleList from "@theme/components/ArticleList";
+import CategoriesBar from "@theme/components/CategoriesBar";
+import TagsBar from "@theme/components/TagsBar";
 
 export default {
   components: { TagsBar, CategoriesBar, BloggerBar, MainLayout, ArticleList },
@@ -122,11 +122,6 @@ export default {
       };
     },
   },
-  watch: {
-    $page() {
-      console.log(this.$page.frontmatter);
-    },
-  },
 };
 </script>
 
@@ -147,10 +142,10 @@ export default {
   .description
     color #ffffff
     position absolute
-    width 80%
-    top 50%
-    left 50%
-    transform: translate(-50%,-50%);
+    top: 20%;
+    width: 40%;
+    left: 20%;
+    transform: translate(-40%, -50%);
     max-width 60rem
     font-size 2rem
     line-height 2rem

@@ -5,18 +5,21 @@
   "main": "index.js",
   "scripts": {
     "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "build": "vuepress build docs"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@vuepress-reco/vuepress-plugin-bgm-player": "^1.1.4",
     "dayjs": "^1.9.7",
     "inquirer": "^7.1.0",
     "json2yaml": "^1.1.0",
-    "vuepress": "1.8.0",
+    "vuepress": "1.9.7",
     "vuepress-plugin-baidu-autopush": "^1.0.1",
     "vuepress-plugin-baidu-tongji": "^1.0.1",
+    "vuepress-plugin-cursor-effects": "^1.1.2",
     "vuepress-plugin-demo-block": "^0.7.2",
+    "vuepress-plugin-dline": "^1.0.2",
     "vuepress-plugin-one-click-copy": "^1.0.2",
     "vuepress-plugin-thirdparty-search": "^1.0.2",
     "vuepress-plugin-zooming": "^1.1.7",
@@ -24,6 +27,7 @@
     "yamljs": "^0.3.0"
   },
   "dependencies": {
+    "canvas-nest.js": "^2.0.4",
     "core-js": "^2.6.12"
   }
 }

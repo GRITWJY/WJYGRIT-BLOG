@@ -12,7 +12,6 @@
 
 <style lang="stylus">
 .main-wrapper
-  height 200px
   margin 1rem auto
   max-width $homePageWidth
   box-sizing border-box

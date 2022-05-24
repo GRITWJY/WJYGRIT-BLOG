@@ -3,6 +3,8 @@ import postsMixin from "./mixins/posts";
 
 import CodeBlock from "@theme/global-components/CodeBlock.vue";
 import CodeGroup from "@theme/global-components/CodeGroup.vue";
+// import vueCanvasNest from "vue-canvas-nest";
+
 // Register the Vue global component
 Vue.component(CodeBlock);
 Vue.component(CodeGroup);
@@ -15,4 +17,5 @@ export default ({
 }) => {
   // 将对文章数据的处理结果混入Vue实例
   Vue.mixin(postsMixin);
+  // Vue.component(vueCanvasNest);
 };

@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import DropdownTransition from "./DropdownTransition";
+import DropdownTransition from "@theme/components/DropdownTransition";
 import { isActive } from "../util";
 
 export default {

@@ -21,9 +21,9 @@
 </template>
 
 <script>
-import MainLayout from "./MainLayout";
-import ArticleList from "./ArticleList";
-import CategoriesBar from "./CategoriesBar";
+import MainLayout from "@theme/components/MainLayout";
+import ArticleList from "@theme/components/ArticleList";
+import CategoriesBar from "@theme/components/CategoriesBar";
 export default {
   name: "CategoriesPage",
   components: { CategoriesBar, MainLayout, ArticleList },

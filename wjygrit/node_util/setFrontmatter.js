@@ -36,10 +36,8 @@ function setFrontmatter(sourceDir, themeConfig) {
     // fileMatterObj => {content:'剔除frontmatter后的文件内容字符串', data:{<frontmatter对象>}, ...}
     const fileMatterObj = matter(dataStr, {});
 
-    // console.log(Object.keys(fileMatterObj.data).length);
-
     if (Object.keys(fileMatterObj.data).length === 0) {
-      console.log(file.filePath);
+      // console.log(file.filePath);
     } else {
       let matterData = fileMatterObj.data;
       let hasChange = false;

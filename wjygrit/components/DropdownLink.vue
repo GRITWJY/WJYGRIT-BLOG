@@ -1,12 +1,14 @@
 <template>
-  <div class="dropdown-wrapper" :class="{open}">
+  <div class="dropdown-wrapper" :class="{ open }">
     <button
       class="dropdown-title"
       type="button"
       :aria-label="dropdownAriaLable"
       @click="toggle"
     >
-      <router-link v-if="item.link" :to="item.link" class="link-title">{{ item.text }}</router-link>
+      <router-link v-if="item.link" :to="item.link" class="link-title">{{
+        item.text
+      }}</router-link>
       <span class="title" v-show="!item.link">{{ item.text }}</span>
       <span class="arrow" :class="open ? 'down' : 'right'"></span>
     </button>
@@ -45,60 +47,57 @@
         </li>
       </ul>
     </DropdownTransition>
-
   </div>
 </template>
 
 <script>
-import NavLink from './NavLink'
-import DropdownTransition from './DropdownTransition'
-import last from 'lodash/last'
+import NavLink from "@theme/components/NavLink";
+import DropdownTransition from "@theme/components/DropdownTransition";
+import last from "lodash/last";
 export default {
   components: { NavLink, DropdownTransition },
 
   props: {
     item: {
-      required: true
-    }
+      required: true,
+    },
   },
 
   data() {
     return {
       open: false,
-      isMQMobile: false
-
-    }
+      isMQMobile: false,
+    };
   },
-  created() {
-  },
+  created() {},
   computed: {
     dropdownAriaLable() {
-      return this.item.ariaLabel || this.item.text
-    }
+      return this.item.ariaLabel || this.item.text;
+    },
   },
   beforeMount() {
     this.isMQMobile = window.innerWidth < 720 ? true : false;
 
-    window.addEventListener('resize', () => {
+    window.addEventListener("resize", () => {
       this.isMQMobile = window.innerWidth < 720 ? true : false;
-    })
+    });
   },
   methods: {
     toggle() {
       if (this.isMQMobile) {
-        this.open = !this.open
+        this.open = !this.open;
       }
     },
-    isLastItemOfArray (item, array) {
-      return last(array) === item
-    }
+    isLastItemOfArray(item, array) {
+      return last(array) === item;
+    },
   },
   watch: {
-    $route () {
-      this.open = false
-    }
-  }
-}
+    $route() {
+      this.open = false;
+    },
+  },
+};
 </script>
 
 <style lang="stylus">

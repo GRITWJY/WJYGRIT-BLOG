@@ -67,7 +67,6 @@ export default {
   },
   watch: {
     curtag() {
-      console.log(this.curtag);
       this.changeTag(this.curtag);
     },
 

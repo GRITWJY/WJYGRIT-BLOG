@@ -17,8 +17,8 @@
 </template>
 
 <script>
-import NavLinks from "./NavLinks";
-import SidebarLinks from "./SidebarLinks";
+import NavLinks from "@theme/components/NavLinks";
+import SidebarLinks from "@theme/components/SidebarLinks";
 
 export default {
   name: "Sidebar",
