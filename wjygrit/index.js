@@ -2,9 +2,9 @@ const path = require("path");
 const yaml = require("js-yaml"); // yaml转js
 const chalk = require("chalk");
 const log = console.log;
-const setFrontmatter = require("./node_util/setFrontmatter");
-const getSidebarData = require("./node_util/getSidebarData");
-const { createPage, deletePage } = require("./node_util/handlePage");
+const setFrontmatter = require("./node_utils/setFrontmatter");
+const getSidebarData = require("./node_utils/getSidebarData");
+const { createPage, deletePage } = require("./node_utils/handlePage");
 
 // md容器名
 const CARD_LIST = "cardList";

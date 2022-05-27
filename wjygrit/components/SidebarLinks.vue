@@ -82,7 +82,7 @@ function resolveOpenGroupIndex(route, items) {
                     "author": "WJYGRIT"
                 },
                 "regularPath": "/01.%E5%89%8D%E7%AB%AF/01.%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/01.JS%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%82%B9.html",
-                "relativePath": "01.前端/01.前端基础/01.JS基础知识点.md",
+                "relativePath": "01.前端/01.前端基础/01.前端开发中常见的JS高级用法.md",
                 "key": "v-f1979c9c",
                 "path": "/pages/a61298/",
                 "headers": [

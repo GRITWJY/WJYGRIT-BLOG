@@ -17,7 +17,7 @@
     <Home v-if="$page.frontmatter.home"></Home>
     <CategoriesPage v-else-if="$page.frontmatter.categoriesPage" />
     <TagsPage v-else-if="$page.frontmatter.tagsPage" />
-    <!-- 归档页 -->
+    <!--    归档页-->
     <ArchivesPage v-else-if="$page.frontmatter.archivesPage" />
 
     <Page v-else :sidebar-items="sidebarItems"></Page>
@@ -58,7 +58,7 @@ export default {
   },
   data() {
     return {
-      isSidebarOpen: true,
+      isSidebarOpen: false,
       showSidebar: false,
       hideNavbar: false,
       themeMode: "light",
@@ -73,14 +73,6 @@ export default {
   beforeMount() {
     // 正常
     this.isSidebarOpenOfclientWidth();
-    const mode = storage.get("mode"); // 不放在created是因为vuepress不能在created访问浏览器api，如window
-    if (!mode || mode === "auto") {
-      // 当未切换过模式，或模式处于'跟随系统'时
-      this._autoMode();
-    } else {
-      this.themeMode = mode;
-    }
-    this.setBodyClass();
 
     // 引入图标库
     const social = this.$themeConfig.social;

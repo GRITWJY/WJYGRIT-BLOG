@@ -1,21 +1,67 @@
 <template>
   <div class="home-wrapper">
     <!-- 这里我通过对bannerBgStyle 进行定时器切换，每5s一次，同时判断此部分是否在可视区域内，只有在可视区域内才开始计时 -->
-    <div class="banner" :style="bannerBgStyle">
-      <!-- 每一个图片下的文字内容，这里本来是放原来的内容的，这里
-       就根据我的需要进行修改了
-       -->
-      <div class="banner-content">
-        <!-- 文字内容: 只包括标题和段落-->
-        <p class="description" v-show="bannerBgText">
-          {{ bannerBgText }}
-        </p>
+    <div class="banner">
+      <div
+        class="img"
+        :style="{
+          background: slide3bg,
+          animation: 'slide3 24s infinite',
+        }"
+      >
+        <!-- 每一个图片下的文字内容，这里本来是放原来的内容的，这里
+         就根据我的需要进行修改了
+         -->
+        <div class="banner-content">
+          <!-- 文字内容: 只包括标题和段落-->
+          <p class="description">
+            {{ homeData.banner[2].txt }}
+          </p>
 
-        <!-- feature块就不需要先 -->
+          <!-- feature块就不需要先 -->
+        </div>
+      </div>
+      <div
+        class="img"
+        :style="{
+          background: slide2bg,
+          animation: 'slide2 24s infinite',
+        }"
+      >
+        <!-- 每一个图片下的文字内容，这里本来是放原来的内容的，这里
+         就根据我的需要进行修改了
+         -->
+        <div class="banner-content">
+          <!-- 文字内容: 只包括标题和段落-->
+          <p class="description">
+            {{ homeData.banner[1].txt }}
+          </p>
+
+          <!-- feature块就不需要先 -->
+        </div>
+      </div>
+      <div
+        class="img"
+        :style="{
+          background: slide1bg,
+          animation: 'slide1 24s infinite',
+        }"
+      >
+        <!-- 每一个图片下的文字内容，这里本来是放原来的内容的，这里
+         就根据我的需要进行修改了
+         -->
+        <div class="banner-content">
+          <!-- 文字内容: 只包括标题和段落-->
+          <p class="description">
+            {{ homeData.banner[0].txt }}
+          </p>
+
+          <!-- feature块就不需要先 -->
+        </div>
       </div>
     </div>
 
-    <!-- banner块 e -->
+    <!--     banner块 e -->
     <main-layout>
       <template #mainLeft>
         <article-list />
@@ -44,39 +90,26 @@ export default {
   components: { TagsBar, CategoriesBar, BloggerBar, MainLayout, ArticleList },
   data() {
     return {
-      bannerBgStyle: "",
-      bannerBgIndex: 0,
-      bannerBgTimer: null,
-      bannerBgText: "",
+      slide1bg: "",
+      slide2bg: "",
+      slide3bg: "",
     };
   },
   created() {
-    this.bannerBgStyle = `background: url(${this.$withBase(
-      this.homeData.banner[this.bannerBgIndex].img
+    this.slide1bg = `url(${this.$withBase(
+      this.homeData.banner[0].img
     )}) center center / cover no-repeat`;
-    this.bannerBgText = this.homeData.banner[this.bannerBgIndex].txt;
-    let num = 0;
-    this.timer = setInterval(() => {
-      if (this.homeData.home) {
-        num++;
-        this.bannerBgIndex++;
-        this.bannerBgIndex =
-          this.bannerBgIndex == this.homeData.banner.length
-            ? 0
-            : this.bannerBgIndex;
-        this.bannerBgText = this.homeData.banner[this.bannerBgIndex].txt;
-        this.bannerBgStyle = `background: url(${this.$withBase(
-          this.homeData.banner[this.bannerBgIndex].img
-        )}) center center / cover no-repeat`;
-      }
-    }, 8000);
+    this.slide2bg = `url(${this.$withBase(
+      this.homeData.banner[1].img
+    )}) center center / cover no-repeat`;
+    this.slide3bg = `url(${this.$withBase(
+      this.homeData.banner[2].img
+    )}) center center / cover no-repeat`;
   },
   mounted() {
     this.generateStars();
   },
-  destoryed() {
-    clearInterval(this.timer);
-  },
+  destoryed() {},
   methods: {
     getRandom(min, max) {
       return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -135,6 +168,12 @@ export default {
   margin-top $navbarHeight
   width: 100%
 
+  .img
+    position absolute
+    width 100%
+    height 100%
+
+
   .stars
     position: absolute;
     animation: flash 4s infinite;
@@ -161,6 +200,37 @@ export default {
 
     .description
       font-size 1.5rem
+
+@keyframes slide3 {
+  66%,94% {
+    opacity: 1;
+  }
+
+  0%,61%,100% {
+    opacity: 0;
+  }
+}
+
+@keyframes slide2 {
+  33%,61% {
+    opacity: 1;
+  }
+
+  0%,27%,66%,100% {
+    opacity: 0;
+  }
+}
+
+
+@keyframes slide1 {
+  0%,27%,100% {
+    opacity: 1;
+  }
+
+  33%,94% {
+    opacity: 0;
+  }
+}
 
 @keyframes flash {
   0% {

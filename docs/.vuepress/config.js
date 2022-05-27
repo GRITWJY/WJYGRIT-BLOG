@@ -1,8 +1,7 @@
 const dayjs = require("dayjs");
-const path = require("path");
 module.exports = {
-  theme: path.resolve(__dirname, "../../wjygrit"),
-  title: "WJYGRIT的笔记",
+  theme: require.resolve("../../wjygrit"),
+  title: "WJYGRIT的博客",
   description:
     "每当你被漫天乌云压的喘不过气时，往往是一切问题解决的时候。而当你感觉晴空万里时，其实并没有你想得那样好",
   base: "/",
@@ -28,12 +27,6 @@ module.exports = {
         copyMessage: "复制成功", // default is 'Copy successfully and then paste it for use.'
         duration: 1000, // prompt message display time.
         showInMobile: false, // whether to display on the mobile side, default: false.
-      },
-    ],
-    [
-      "@vuepress/search",
-      {
-        searchMaxSuggestions: 10,
       },
     ],
     [
@@ -118,16 +111,16 @@ module.exports = {
               "https://wjygrit.oss-cn-beijing.aliyuncs.com/music/QQ%E9%9F%B3%E4%B9%90/8.webp",
           },
         ],
-        autoplay: true,
+        autoplay: false,
       },
     ],
     [
       "dline",
       {
-        zIndex: -1, // 背景层级
+        zIndex: -50, // 背景层级
         opacity: 0.9, // 背景透明度
         color: "#666", // 线条颜色 16进制
-        count: 166, // 线条密度
+        count: 66, // 线条密度
       },
     ],
   ],
@@ -143,11 +136,14 @@ module.exports = {
         text: "前端",
         link: "/web/",
         items: [
-          { text: "前端基础", link: "/pages/a61298/" },
-          { text: "前端技巧", link: "/pages/8143cc480faf9a11/" },
+          { text: "前端基础概念", link: "/pages/fawgwrgker/" },
+          { text: "前端技巧", link: "/pages/a61298/" },
           {
             text: "源码系列",
-            items: [{ text: "vue源码解析", link: "/source/vue/" }],
+            items: [
+              { text: "vue源码解析", link: "/source/vue/" },
+              { text: "lodash源码解析", link: "/source/lodash/" },
+            ],
           },
         ],
       },

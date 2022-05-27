@@ -1,6 +1,6 @@
 {
   "name": "vuepress-theme-wjygrit",
-  "version": "1.1.1",
+  "version": "1.1.5",
   "description": "一个基于vuepress的博客主题",
   "author": {
     "name": "WJYGRIT",
@@ -8,6 +8,14 @@
   },
   "license": "MIT",
   "main": "index.js",
+  "keywords": [
+    "documentation",
+    "vue",
+    "vuepress",
+    "generator",
+    "theme",
+    "blog"
+  ],
   "dependencies": {
     "@better-scroll/core": "^2.0.0-beta.6",
     "@better-scroll/slide": "^2.0.0-beta.6",
@@ -24,5 +32,8 @@
     "stylus-loader": "^3.0.2",
     "vuepress-plugin-container": "^2.0.2",
     "vuepress-plugin-smooth-scroll": "^0.0.3"
+  },
+  "devDependencies": {
+    "@vuepress/types": "^1.9.5"
   }
 }
