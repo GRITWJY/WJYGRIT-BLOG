@@ -21,21 +21,27 @@
         </div>
       </div>
       <div class="articles">
-        <div class="articles-item" v-for="(item, i) in childs" :key="i">
-          <span class="articles-item-title"> {{ item.title }} </span>
-          <!---->
-          <div class="articles-item-tags">
-            <i class="el-icon-price-tag"></i>
-            {{ item.tags }}
-          </div>
-          <div class="articles-item-date">
-            <i class="el-icon-date"></i>
-            {{ item.date }}
-          </div>
-          <div class="articles-item-view">
-            <i class="el-icon-view"></i>
-            {{ item.views }}
-          </div>
+        <div v-for="(item, i) in childs">
+          <router-link :to="item.path" class="articles-item" :key="i">
+            <span class="articles-item-title"> {{ item.title }} </span>
+            <!---->
+            <div
+              class="articles-item-tags"
+              v-for="(tag, i) in item.tags"
+              :key="i"
+            >
+              <span>{{ tag }}</span>
+            </div>
+
+            <div class="articles-item-date">
+              <i class="iconfont icon-riqi"></i>
+              {{ item.date }}
+            </div>
+            <div class="articles-item-view">
+              <i class="el-icon-view"></i>
+              {{ item.views }}
+            </div>
+          </router-link>
         </div>
       </div>
     </div>
@@ -76,9 +82,10 @@ export default {
       this.childs = curTags.map((item) => {
         return {
           title: item.frontmatter.title,
-          tags: item.frontmatter.tags.join("、"),
+          tags: item.frontmatter.tags,
           date: dateFormat(new Date(item.frontmatter.date)),
           views: "999",
+          path: item.path,
         };
       });
 
@@ -169,7 +176,8 @@ export default {
     justify-content space-between
     align-items center
     padding 10px
-    color #333
+    color #666
+    font-weight 400
     font-size 14px
     line-height 14px
 
@@ -188,10 +196,24 @@ export default {
       margin-right 20px
 
     &-tags
-      margin-right 20px
+      margin-right 4px
+      box-sizing: border-box;
+      color #999
+      font-size 12px
+      line-height 12px
+      border-radius 20px
+      background #f0f0f0
+      display flex
+      justify-content center
+      align-items center
+      width 68px
+      height 20px
 
     &-date
       margin-right 20px
+      margin-left 20px
+      color: #888;
+      font-size: 12px;
 
     &-view
       font-size 12px

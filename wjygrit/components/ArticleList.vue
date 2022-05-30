@@ -33,40 +33,57 @@
       </div>
       <div class="articles">
         <template v-if="Array.isArray(childs)">
-          <div class="articles-item" v-for="(item, i) in childs" :key="i">
-            <span class="articles-item-title"> {{ item.title }} </span>
-
-            <div class="articles-item-tags">
-              <i class="el-icon-price-tag"></i>
-              {{ item.tags }}
-            </div>
-            <div class="articles-item-date">
-              <i class="el-icon-date"></i>
-              {{ item.date }}
-            </div>
-            <div class="articles-item-view">
-              <i class="el-icon-view"></i>
-              {{ item.views }}
-            </div>
-          </div>
-        </template>
-        <template v-else>
-          <div v-for="(child, key, index) in childs" class="articles-box">
-            <div class="articles-box-head">{{ key }}</div>
-            <div class="articles-item" v-for="(item, i) in child" :key="i">
+          <div v-for="(item, i) in childs">
+            <router-link :to="item.path" class="articles-item" :key="i">
+              <span class="articles-item-nums">
+                {{ childs.length - i }}
+              </span>
               <span class="articles-item-title"> {{ item.title }} </span>
-              <div class="articles-item-tags">
-                <i class="el-icon-price-tag"></i>
-                {{ item.tags }}
+              <div
+                class="articles-item-tags"
+                v-for="(tag, i) in item.tags"
+                :key="i"
+              >
+                <span>{{ tag }}</span>
               </div>
               <div class="articles-item-date">
-                <i class="el-icon-date"></i>
+                <i class="iconfont icon-riqi"></i>
                 {{ item.date }}
               </div>
               <div class="articles-item-view">
-                <i class="el-icon-view"></i>
+                <i class="iconfont icon-yanjing"></i>
                 {{ item.views }}
               </div>
+            </router-link>
+          </div>
+        </template>
+        <template v-else>
+          <div
+            v-for="(child, key, index) in childs"
+            class="articles-box"
+            style="margin-bottom: 20px"
+          >
+            <div class="articles-box-head">{{ key }}</div>
+            <div v-for="(item, i) in child" :key="i">
+              <router-link class="articles-item" :to="item.path">
+                <span class="articles-item-nums">{{ i + 1 }}</span>
+                <span class="articles-item-title"> {{ item.title }} </span>
+                <div
+                  class="articles-item-tags"
+                  v-for="(tag, i) in item.tags"
+                  :key="i"
+                >
+                  <span>{{ tag }}</span>
+                </div>
+                <div class="articles-item-date">
+                  <i class="iconfont icon-riqi"></i>
+                  {{ item.date }}
+                </div>
+                <div class="articles-item-view">
+                  <i class="iconfont icon-yanjing"></i>
+                  {{ item.views }}
+                </div>
+              </router-link>
             </div>
           </div>
         </template>
@@ -76,7 +93,7 @@
 </template>
 
 <script>
-import { dateFormat } from "../util";
+import { dateFormat, group } from "../util";
 
 export default {
   props: {
@@ -125,9 +142,11 @@ export default {
           this.childs[key] = curLevel2[key].children.map((item) => {
             return {
               title: item.frontmatter.title,
-              tags: item.frontmatter.tags.join("、"),
+              tags: item.frontmatter.tags,
+              category: item.frontmatter.categories[0],
               date: dateFormat(new Date(item.frontmatter.date)),
               views: "999",
+              path: item.path,
             };
           });
         });
@@ -135,9 +154,11 @@ export default {
         this.childs = curLevel2.children.map((item) => {
           return {
             title: item.frontmatter.title,
-            tags: item.frontmatter.tags.join("、"),
+            tags: item.frontmatter.tags,
+            category: item.frontmatter.categories,
             date: dateFormat(new Date(item.frontmatter.date)),
             views: "999",
+            path: item.path,
           };
         });
       }
@@ -229,6 +250,9 @@ export default {
     transition-duration: 150ms;
     transition all 1s
 
+
+
+
 .articles
   padding 0 20px
 
@@ -238,14 +262,22 @@ export default {
     justify-content space-between
     align-items center
     padding 10px
-    color #333
+    color #666
+    font-weight 400
     font-size 14px
     line-height 14px
+    transition: transform 0.25s ease-in-out 0.24s, opacity 0.25s ease-in-out 0.24s;
+    transform: translateY(0px);
+
 
     &:hover
       cursor pointer
       background-color #F5F7FA
       border-radius 10px
+
+    &-nums
+      margin-right 20px
+
 
     &-title
       flex 1
@@ -257,10 +289,25 @@ export default {
       margin-right 20px
 
     &-tags
-      margin-right 20px
+      margin-right 4px
+      box-sizing: border-box;
+      color #999
+      font-size 12px
+      line-height 12px
+      border-radius 20px
+      background #f0f0f0
+      display flex
+      justify-content center
+      align-items center
+      width 68px
+      height 20px
+
 
     &-date
       margin-right 20px
+      margin-left 20px
+      color: #888;
+      font-size: 12px;
 
     &-view
       font-size 12px
@@ -282,6 +329,8 @@ export default {
       line-height 16px
     .articles-item
       padding-left 15px
+
+
 
 
 >>>

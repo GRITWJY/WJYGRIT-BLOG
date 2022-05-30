@@ -5,7 +5,6 @@ const log = console.log;
 const setFrontmatter = require("./node_utils/setFrontmatter");
 const getSidebarData = require("./node_utils/getSidebarData");
 const { createPage, deletePage } = require("./node_utils/handlePage");
-
 // md容器名
 const CARD_LIST = "cardList";
 const CARD_IMG_LIST = "cardImgList";
