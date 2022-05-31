@@ -1,11 +1,13 @@
 {
-  "name": "ygrit-blog-new",
-  "version": "1.0.0",
+  "name": "wjygrit-blog",
+  "version": "1.0.2",
   "description": "wjyGrit的博客",
   "main": "index.js",
   "scripts": {
     "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "docs:build": "vuepress build docs",
+    "publish": "cd wjygrit && npm publish && cd .. && npm run updateTheme",
+    "updateTheme": "npm uninstall vuepress-theme-wjygrit && npm install vuepress-theme-wjygrit -D"
   },
   "author": "",
   "license": "MIT",
@@ -13,8 +15,8 @@
     "@vuepress-reco/vuepress-plugin-bgm-player": "^1.1.4",
     "dayjs": "^1.9.7",
     "inquirer": "^7.1.0",
-    "vuepress": "1.9.5",
     "json2yaml": "^1.1.0",
+    "vuepress": "1.9.5",
     "vuepress-plugin-baidu-autopush": "^1.0.1",
     "vuepress-plugin-baidu-tongji": "^1.0.1",
     "vuepress-plugin-cursor-effects": "^1.1.2",
@@ -23,8 +25,7 @@
     "vuepress-plugin-one-click-copy": "^1.0.2",
     "vuepress-plugin-thirdparty-search": "^1.0.2",
     "vuepress-plugin-zooming": "^1.1.7",
-    "vuepress-theme-vdoing": "^1.8.6",
-    "vuepress-theme-wjygrit": "^1.1.5",
+    "vuepress-theme-wjygrit": "^1.1.9",
     "yamljs": "^0.3.0"
   }
 }
