@@ -11,7 +11,6 @@
       ></a>
     </div>
 
-    <!--Vdoing主题遵循MIT协议，完全开源且免费。如果您对主题的修改并不大，希望您保留主题的链接。-->
     Theme by
     <a
       href="https://github.com/xugaoyi/vuepress-theme-vdoing"
@@ -23,6 +22,10 @@
       | Copyright © {{ footer.createYear }}-{{ new Date().getFullYear() }}
       <span v-html="footer.copyrightInfo"></span>
     </template>
+
+    <a href="https://beian.miit.gov.cn/" target="_blank"
+      >鄂ICP备2022008939号-1</a
+    >
   </div>
 </template>
 
@@ -30,16 +33,16 @@
 export default {
   computed: {
     social() {
-      return this.$themeConfig.social
+      return this.$themeConfig.social;
     },
     footer() {
-      return this.$themeConfig.footer
-    }
-  }
-}
+      return this.$themeConfig.footer;
+    },
+  },
+};
 </script>
 
-<style lang='stylus'>
+<style lang="stylus">
 // $mobileSidebarWidth = $sidebarWidth * 0.82
 .footer
   padding 5rem 1.5rem 2.5rem
