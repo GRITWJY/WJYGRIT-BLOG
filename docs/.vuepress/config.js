@@ -123,6 +123,7 @@ module.exports = {
         count: 66, // 线条密度
       },
     ],
+    ["tabs"],
   ],
   head: [["link", { rel: "icon", href: "/wjy.jpeg" }]],
   markdown: {
@@ -143,6 +144,9 @@ module.exports = {
             items: [
               { text: "vue源码解析", link: "/source/vue/" },
               { text: "lodash源码解析", link: "/source/lodash/" },
+              { text: "jQuery源码解析", link: "/source/jquery/" },
+              { text: "d3源码解析", link: "/source/d3/" },
+              { text: "vue-cli源码解析", link: "/source/vuecli/" },
             ],
           },
         ],
@@ -151,6 +155,11 @@ module.exports = {
         text: "计算机",
         link: "/computed/",
         items: [{ text: "计算机网络", link: "/pages/aFADFAFA61298/" }],
+      },
+      {
+        text: "算法",
+        link: "/algorithm/",
+        items: [{ text: "字符串", link: "/pages/KEMAWL/" }],
       },
       {
         text: "索引",

@@ -1,7 +1,15 @@
 {
   "name": "vuepress-theme-wjygrit",
-  "version": "1.1.9",
+  "version": "1.1.10",
   "description": "一个基于vuepress的博客主题",
+  "homepage": "https://github.com/GRITWJY/WJYGRIT-BLOG#readme",
+  "bugs": {
+    "url": "https://github.com/GRITWJY/WJYGRIT-BLOG/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GRITWJY/WJYGRIT-BLOG.git"
+  },
   "author": {
     "name": "WJYGRIT",
     "email": "1435408225@qq.com"
