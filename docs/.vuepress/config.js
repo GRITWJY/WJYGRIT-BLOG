@@ -125,7 +125,22 @@ module.exports = {
     ],
     ["tabs"],
   ],
-  head: [["link", { rel: "icon", href: "/logo.png" }]],
+  head: [
+    ["link", { rel: "icon", href: "/logo.png" }],
+    [
+      "script",
+      {},
+      `
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?86a1230b61635a1596165ee216c1097d";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+        </script>`,
+    ],
+  ],
   themeConfig: {
     logo: "/wjy.jpeg",
     nav: [
