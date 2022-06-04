@@ -45,7 +45,7 @@ module.exports = {
     [
       "@vuepress/last-update",
       {
-        transformer: (timestamp, lang) => {
+        transformer: (timestamp) => {
           return dayjs(timestamp).format("YYYY/MM/DD, HH:mm:ss");
         },
       },
@@ -125,10 +125,7 @@ module.exports = {
     ],
     ["tabs"],
   ],
-  head: [["link", { rel: "icon", href: "/wjy.jpeg" }]],
-  markdown: {
-    lineNumbers: true,
-  },
+  head: [["link", { rel: "icon", href: "/logo.png" }]],
   themeConfig: {
     logo: "/wjy.jpeg",
     nav: [
@@ -231,6 +228,7 @@ module.exports = {
   // 监听文件变化并重新构建
   extraWatchFiles: [".vuepress/config.ts", ".vuepress/config/htmlModules.ts"],
   markdown: {
+    lineNumbers: false,
     extractHeaders: ["h2", "h3", "h4", "h5", "h6"], // 提取标题到侧边栏的级别，默认['h2', 'h3']
   },
 };
