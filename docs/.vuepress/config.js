@@ -139,6 +139,7 @@ module.exports = {
         items: [
           { text: "前端基础概念", link: "/pages/fawgwrgker/" },
           { text: "前端技巧", link: "/pages/a61298/" },
+          { text: "性能优化", link: "/pages/OEKNDE/" },
           {
             text: "源码系列",
             items: [
