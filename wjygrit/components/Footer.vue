@@ -101,6 +101,8 @@ export default {
   width auto
   padding-left 1.5rem
 
+
+
 .police-box
   display: flex;
   flex-direction: row;
