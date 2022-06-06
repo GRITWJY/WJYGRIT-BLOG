@@ -26,17 +26,7 @@
     <a href="https://beian.miit.gov.cn/" target="_blank"
       >鄂ICP备2022008939号-1</a
     >
-    <div
-      style="
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        width: 300px;
-        margin: 0 auto;
-        padding: 20px 0;
-      "
-    >
+    <div class="police-box">
       <img
         src="https://wjygrit.oss-cn-beijing.aliyuncs.com/2021/police.png"
         alt="备案编号图标"
@@ -110,4 +100,13 @@ export default {
 .no-sidebar .footer
   width auto
   padding-left 1.5rem
+
+.police-box
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  margin: 0 auto;
+  padding: 20px 0;
 </style>
