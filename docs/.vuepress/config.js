@@ -215,7 +215,7 @@ module.exports = {
       link: "https://github.com/GRITWJY", // 可选的
     },
     blogger: {
-      avatar: "https://wjygrit.oss-cn-beijing.aliyuncs.com/wjy.jpeg",
+      avatar: "https://wjygrit.oss-cn-beijing.aliyuncs.com/2021/wjy.jpeg",
       name: "WJYGRIT",
       slogan: "专研前端技术的小白",
     },
