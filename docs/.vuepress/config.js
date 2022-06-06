@@ -142,7 +142,7 @@ module.exports = {
     ],
   ],
   themeConfig: {
-    logo: "/wjy.jpeg",
+    logo: "https://wjygrit.oss-cn-beijing.aliyuncs.com/2021/wjy.jpeg",
     nav: [
       { text: "首页", link: "/" },
       {
