@@ -292,7 +292,9 @@ function getCardListDOM(dataList, row, config) {
       >
         ${
           item.avatar
-            ? '<img src="' + withBase(item.avatar) + '" class="no-zoom">'
+            ? '<img src="' +
+              withBase(item.avatar) +
+              '" class="no-zoom"  crossOrigin="anonymous">'
             : ""
         }
         <div>
@@ -322,7 +324,7 @@ function getCardImgListDOM(dataList, row, config) {
           <div class="box-img" style="height: ${imgHeight}">
               <img src="${withBase(
                 item.img
-              )}" class="no-zoom" style="object-fit: ${objectFit}">
+              )}" class="no-zoom" style="object-fit: ${objectFit}" crossOrigin='anonymous'>
           </div>
           <div class="box-info">
               <p class="name">${item.name}</p>
@@ -338,7 +340,9 @@ function getCardImgListDOM(dataList, row, config) {
               ? `<div class="box-footer">
               ${
                 item.avatar
-                  ? `<img src="${withBase(item.avatar)}" class="no-zoom">`
+                  ? `<img src="${withBase(
+                      item.avatar
+                    )}" class="no-zoom" crossOrigin="anonymous">`
                   : ""
               }
               ${item.author ? `<span>${item.author}</span>` : ""}
