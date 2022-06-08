@@ -11,9 +11,9 @@ module.exports = {
     [
       "@vuepress/medium-zoom",
       {
-        selector: "img",
+        selector: ".theme-wjygrit-content :not(.custom) > img",
         options: {
-          margin: 36,
+          margin: 16,
         },
       },
     ],
@@ -241,7 +241,7 @@ module.exports = {
     },
   },
   // 监听文件变化并重新构建
-  extraWatchFiles: [".vuepress/config.ts", ".vuepress/config/htmlModules.ts"],
+  extraWatchFiles: [".vuepress/config.js"],
   markdown: {
     lineNumbers: false,
     extractHeaders: ["h2", "h3", "h4", "h5", "h6"], // 提取标题到侧边栏的级别，默认['h2', 'h3']

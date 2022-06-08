@@ -1,5 +1,5 @@
 <template>
-  <div class="theme-vdoing-content">
+  <div class="theme-wjygrit-content">
     <div class="column-wrapper">
       <img v-if="pageData.imgUrl" :src="$withBase(pageData.imgUrl)" />
       <dl class="column-info">
@@ -74,47 +74,57 @@ export default {
     return {
       pageData: null,
       isStructuring: true,
-      appointDir: {}
-    }
+      appointDir: {},
+    };
   },
   created() {
-    this.getPageData()
-    const sidebar = this.$themeConfig.sidebar
-    if (!sidebar || sidebar === 'auto') {
-      this.isStructuring = false
-      console.error("目录页数据依赖于结构化的侧边栏数据，请在主题设置中将侧边栏字段设置为'structuring'，否则无法获取目录数据。")
+    this.getPageData();
+    const sidebar = this.$themeConfig.sidebar;
+    if (!sidebar || sidebar === "auto") {
+      this.isStructuring = false;
+      console.error(
+        "目录页数据依赖于结构化的侧边栏数据，请在主题设置中将侧边栏字段设置为'structuring'，否则无法获取目录数据。"
+      );
     }
   },
   methods: {
     getPageData() {
-      const pageComponent = this.$frontmatter.pageComponent
+      const pageComponent = this.$frontmatter.pageComponent;
       if (pageComponent && pageComponent.data) {
         this.pageData = {
           ...pageComponent.data,
-          title: this.$frontmatter.title
-        }
+          title: this.$frontmatter.title,
+        };
       } else {
-        console.error('请在front matter中设置pageComponent和pageComponent.data数据')
+        console.error(
+          "请在front matter中设置pageComponent和pageComponent.data数据"
+        );
       }
     },
     getCatalogueList() {
-      const { sidebar } = this.$site.themeConfig
-      const { data } = this.$frontmatter.pageComponent
-      const key = data.path || data.key
-      let keyArray = key.split('/');
-      let catalogueList = (sidebar[`/${keyArray[0]}/`]);
+      const { sidebar } = this.$site.themeConfig;
+      const { data } = this.$frontmatter.pageComponent;
+      const key = data.path || data.key;
+      let keyArray = key.split("/");
+      let catalogueList = sidebar[`/${keyArray[0]}/`];
       if (keyArray.length > 1) {
         // 删除第一个元素，并修改原数组
         keyArray.shift();
         catalogueList = this.appointDirDeal(0, keyArray, catalogueList);
       }
       if (!catalogueList) {
-        console.error('未获取到目录数据，请查看front matter中设置的path是否正确。')
+        console.error(
+          "未获取到目录数据，请查看front matter中设置的path是否正确。"
+        );
       }
-      return catalogueList
+      return catalogueList;
     },
-    type(o) { // 数据类型检查
-      return Object.prototype.toString.call(o).match(/\[object (.*?)\]/)[1].toLowerCase()
+    type(o) {
+      // 数据类型检查
+      return Object.prototype.toString
+        .call(o)
+        .match(/\[object (.*?)\]/)[1]
+        .toLowerCase();
     },
     /**
      * 指定目录页配置处理
@@ -126,13 +136,17 @@ export default {
     appointDirDeal(index, dirKeyArray, catalogueList) {
       let dirKey = dirKeyArray[index];
       if (dirKey !== undefined && dirKey.indexOf(".") !== -1) {
-        dirKey = dirKey.substring(dirKey.indexOf('.') + 1);
+        dirKey = dirKey.substring(dirKey.indexOf(".") + 1);
       }
       for (let i = 0; i < catalogueList.length; i++) {
         if (catalogueList[i].title === dirKey) {
           this.appointDir = catalogueList[i];
           if (index < dirKeyArray.length - 1) {
-            this.appointDirDeal(index + 1, dirKeyArray, catalogueList[i].children);
+            this.appointDirDeal(
+              index + 1,
+              dirKeyArray,
+              catalogueList[i].children
+            );
           }
         }
       }
@@ -140,15 +154,15 @@ export default {
     },
   },
   watch: {
-    '$route.path'() {
-      this.getPageData()
-    }
-  }
-}
+    "$route.path"() {
+      this.getPageData();
+    },
+  },
+};
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
-.theme-vdoing-content
+.theme-wjygrit-content
   margin-bottom $navbarHeight
 .title-tag
   // height 1.1rem

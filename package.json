@@ -13,6 +13,7 @@
   "license": "MIT",
   "devDependencies": {
     "@vuepress-reco/vuepress-plugin-bgm-player": "^1.1.4",
+    "@vuepress/plugin-medium-zoom": "^1.9.7",
     "dayjs": "^1.9.7",
     "inquirer": "^7.1.0",
     "json2yaml": "^1.1.0",

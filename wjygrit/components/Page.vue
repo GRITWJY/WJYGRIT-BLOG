@@ -5,7 +5,7 @@
         <ArticleInfo v-if="isArticle()" />
 
         <component
-          class="theme-vdoing-content"
+          class="theme-wjygrit-content"
           v-if="pageComponent"
           :is="pageComponent"
         />
@@ -23,7 +23,7 @@
             }}</span>
           </h1>
 
-          <Content class="theme-vdoing-content" />
+          <Content class="theme-wjygrit-content" />
         </div>
 
         <PageEdit />
