@@ -181,6 +181,11 @@ module.exports = {
         items: [{ text: "字符串", link: "/pages/KEMAWL/" }],
       },
       {
+        text: "更多",
+        link: "/more/",
+        items: [{ text: "思绪整理", link: "/pages/thinking0618/" }],
+      },
+      {
         text: "索引",
         link: "/archives/",
         items: [

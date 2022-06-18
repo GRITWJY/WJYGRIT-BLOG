@@ -19,6 +19,7 @@ export function filterPosts(posts) {
  * @param {Array} posts 过滤非文章页之后的文章数据
  */
 export function sortPosts(posts) {
+  console.log(posts);
   posts.sort((prev, next) => {
     const prevSticky = prev.frontmatter.sticky;
     const nextSticky = next.frontmatter.sticky;
@@ -118,7 +119,7 @@ export function categoriesAndTags(groupPosts) {
         categoriesArr.push({
           key,
           length: obj[key].children.length,
-	        path
+          path,
         });
       } else {
         getCategories(obj[key], path + key + "/");
@@ -126,7 +127,7 @@ export function categoriesAndTags(groupPosts) {
     }
   }
 
-  getCategories(groupPosts.categories,"");
+  getCategories(groupPosts.categories, "");
   for (let key in groupPosts.tags) {
     tagsArr.push({
       key,
