@@ -1,10 +1,6 @@
 const dayjs = require("dayjs");
 const { path } = require("@vuepress/utils");
 
-const {
-  registerComponentsPlugin,
-} = require("@vuepress/plugin-register-components");
-
 module.exports = {
   theme: require.resolve("../../wjygrit"),
   title: "WJYGRIT的博客",
@@ -158,6 +154,7 @@ module.exports = {
           { text: "前端基础概念", link: "/pages/fawgwrgker/" },
           { text: "前端技巧", link: "/pages/a61298/" },
           { text: "性能优化", link: "/pages/OEKNDE/" },
+          { text: "CSS集合", link: "/pages/WKWEKD/" },
           {
             text: "源码系列",
             items: [
