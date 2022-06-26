@@ -2,7 +2,7 @@
 home: true 
 banner: [
   {
-    img: 'https://wjygrit.oss-cn-beijing.aliyuncs.com/2021/bg4.webp',
+    img: 'https://wjygrit.oss-cn-beijing.aliyuncs.com/2021/bg13.webp',
     txt: '每当你被漫天乌云压的喘不过气时，往往是一切问题解决的时候。而当你感觉晴空万里时，其实并没有你想得那样好'
   },
   {
