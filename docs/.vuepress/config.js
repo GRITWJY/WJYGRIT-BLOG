@@ -210,7 +210,6 @@ module.exports = {
         buttonText: "更新",
       },
     },
-
     footer: {
       createYear: 2022, // 博客创建年份
       copyrightInfo:

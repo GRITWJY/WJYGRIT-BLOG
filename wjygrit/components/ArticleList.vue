@@ -219,6 +219,8 @@ export default {
     color #ffffff
 
 .category2
+  overflow-x: scroll
+  width:100%
   padding 0 20px
   display flex
   box-sizing border-box
@@ -230,6 +232,7 @@ export default {
 
   &-item
     font-size 16px
+    flex-shrink 0
     line-height 16px
     transition: color .5s ease;
     cursor pointer
