@@ -170,12 +170,10 @@ module.exports = {
       {
         text: "计算机",
         link: "/computed/",
-        items: [{ text: "计算机网络", link: "/pages/aFADFAFA61298/" }],
-      },
-      {
-        text: "部署",
-        link: "/deploy/",
-        items: [{ text: "自动化部署", link: "/pages/DEFKPA/" }],
+        items: [
+          { text: "计算机网络", link: "/pages/aFADFAFA61298/" },
+          { text: "算法", link: "/pages/KEMAWL/" },
+        ],
       },
       {
         text: "更多",
