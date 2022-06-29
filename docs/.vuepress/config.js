@@ -173,9 +173,9 @@ module.exports = {
         items: [{ text: "计算机网络", link: "/pages/aFADFAFA61298/" }],
       },
       {
-        text: "算法",
-        link: "/algorithm/",
-        items: [{ text: "字符串", link: "/pages/KEMAWL/" }],
+        text: "部署",
+        link: "/deploy/",
+        items: [{ text: "自动化部署", link: "/pages/DEFKPA/" }],
       },
       {
         text: "更多",
