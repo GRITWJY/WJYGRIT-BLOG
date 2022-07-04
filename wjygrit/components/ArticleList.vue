@@ -219,7 +219,7 @@ export default {
     color #ffffff
 
 .category2
-  overflow-x: scroll
+  overflow-x: auto
   width:100%
   padding 0 20px
   display flex

@@ -116,15 +116,15 @@ module.exports = {
         autoplay: false,
       },
     ],
-    [
-      "dline",
-      {
-        zIndex: -50, // 背景层级
-        opacity: 0.9, // 背景透明度
-        color: "#666", // 线条颜色 16进制
-        count: 66, // 线条密度
-      },
-    ],
+    // [
+    //   "dline",
+    //   {
+    //     zIndex: -50, // 背景层级
+    //     opacity: 0.9, // 背景透明度
+    //     color: "#666", // 线条颜色 16进制
+    //     count: 66, // 线条密度
+    //   },
+    // ],
     ["tabs"],
   ],
   head: [
