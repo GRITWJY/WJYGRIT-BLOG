@@ -13,10 +13,10 @@
 
     Theme by
     <a
-      href="https://github.com/xugaoyi/vuepress-theme-vdoing"
+      href="https://github.com/GRITWJY/WJYGRIT-BLOG"
       target="_blank"
       title="本站主题"
-      >Vdoing</a
+      >WJYGRIT</a
     >
     <template v-if="footer">
       | Copyright © {{ footer.createYear }}-{{ new Date().getFullYear() }}
