@@ -5,3 +5,4 @@ node_modules
 .temp
 .DS_Store
 .gitignore
+pnpm-lock.yaml
