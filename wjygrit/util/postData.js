@@ -19,7 +19,6 @@ export function filterPosts(posts) {
  * @param {Array} posts 过滤非文章页之后的文章数据
  */
 export function sortPosts(posts) {
-  console.log(posts);
   posts.sort((prev, next) => {
     const prevSticky = prev.frontmatter.sticky;
     const nextSticky = next.frontmatter.sticky;

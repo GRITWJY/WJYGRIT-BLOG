@@ -95,7 +95,8 @@ export default {
       slide3bg: "",
     };
   },
-  created() {
+  mounted() {
+    this.generateStars();
     this.slide1bg = `url(${this.$withBase(
       this.homeData.banner[0].img
     )}) center center / cover no-repeat`;
@@ -106,10 +107,11 @@ export default {
       this.homeData.banner[2].img
     )}) center center / cover no-repeat`;
   },
-  mounted() {
-    this.generateStars();
-  },
+  // mounted() {
+  //   // this.generateStars();
+  // },
   destoryed() {},
+
   methods: {
     getRandom(min, max) {
       return Math.floor(Math.random() * (max - min + 1)) + min;

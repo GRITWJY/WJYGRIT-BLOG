@@ -172,7 +172,7 @@ module.exports = {
         link: "/computed/",
         items: [
           { text: "计算机网络", link: "/pages/aFADFAFA61298/" },
-          { text: "算法", link: "/pages/KEMAWL/" },
+          { text: "数据结构", link: "/pages/KEMAWL/" },
         ],
       },
       {
