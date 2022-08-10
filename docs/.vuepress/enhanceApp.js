@@ -3,7 +3,6 @@ export default ({ router }) => {
     if (typeof _hmt !== "undefined") {
       if (to.path) {
         if (to.fullPath.split("#").length === 1) {
-          console.log(to.fullPath);
           _hmt.push(["_trackPageview", to.fullPath.split("#")[0]]);
         }
       }
