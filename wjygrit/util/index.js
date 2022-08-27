@@ -282,7 +282,7 @@ export function zero(d) {
 
 // 获取时间的时间戳
 export function getTimeNum(post) {
-  let dateStr = post.lastUpdated || post.frontmatter.date || new Date();
+  let dateStr = post.frontmatter.date || post.lastUpdated || new Date();
   let date = new Date(dateStr);
   if (date == "Invalid Date" && dateStr) {
     // 修复new Date()在Safari下出现Invalid Date的问题
