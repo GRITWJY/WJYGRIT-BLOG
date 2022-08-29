@@ -154,7 +154,15 @@ module.exports = {
           { text: "前端基础概念", link: "/pages/fawgwrgker/" },
           { text: "前端技巧", link: "/pages/a61298/" },
           { text: "性能优化", link: "/pages/OEKNDE/" },
-          { text: "CSS集合", link: "/pages/WKWEKD/" },
+          {
+            text: "知识体系",
+            items: [
+              { text: "JS知识图谱", link: "/WJY/JS/" },
+              { text: "VUE知识图谱", link: "/WJY/VUE/" },
+              { text: "浏览器知识图谱", link: "/WJY/Browser/" },
+              { text: "CSS知识图谱", link: "/WJY/CSS/" },
+            ],
+          },
           {
             text: "源码系列",
             items: [
