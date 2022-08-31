@@ -13,7 +13,6 @@ export default {
       return filterPosts(this.$site.pages);
     },
     $sortPosts() {
-      console.log(this.$filterPosts);
       // 按置顶和时间排序的文章数据
       return sortPosts(this.$filterPosts);
     },

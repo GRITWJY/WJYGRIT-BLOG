@@ -161,6 +161,7 @@ module.exports = {
               { text: "VUE知识图谱", link: "/WJY/VUE/" },
               { text: "浏览器知识图谱", link: "/WJY/Browser/" },
               { text: "CSS知识图谱", link: "/WJY/CSS/" },
+              { text: "精华合集", link: "/WJY/delicate/" },
             ],
           },
           {
