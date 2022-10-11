@@ -50,10 +50,10 @@
                 <i class="iconfont icon-riqi"></i>
                 {{ item.date }}
               </div>
-              <div class="articles-item-view">
-                <i class="iconfont icon-yanjing"></i>
-                {{ item.views }}
-              </div>
+              <!--              <div class="articles-item-view">-->
+              <!--                <i class="iconfont icon-yanjing"></i>-->
+              <!--                {{ item.views }}-->
+              <!--              </div>-->
             </router-link>
           </div>
         </template>
@@ -79,10 +79,10 @@
                   <i class="iconfont icon-riqi"></i>
                   {{ item.date }}
                 </div>
-                <div class="articles-item-view">
-                  <i class="iconfont icon-yanjing"></i>
-                  {{ item.views }}
-                </div>
+                <!--                <div class="articles-item-view">-->
+                <!--                  <i class="iconfont icon-yanjing"></i>-->
+                <!--                  {{ item.views }}-->
+                <!--                </div>-->
               </router-link>
             </div>
           </div>
